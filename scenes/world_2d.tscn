@@ -1,9 +1,11 @@
-[gd_scene load_steps=32 format=4 uid="uid://dpq5o1ylws21f"]
+[gd_scene load_steps=35 format=4 uid="uid://dpq5o1ylws21f"]
 
+[ext_resource type="Script" uid="uid://op0jgomfom2v" path="res://scripts/game_manager.gd" id="1_aua73"]
 [ext_resource type="Texture2D" uid="uid://tmuukrbws5np" path="res://assets/tilesets/back.png" id="1_ju7hw"]
 [ext_resource type="PackedScene" uid="uid://bw6uo04pe3bsa" path="res://scenes/player.tscn" id="1_pneyj"]
 [ext_resource type="Script" uid="uid://bskk5p80r1l64" path="res://scripts/player.gd" id="2_6cuhj"]
 [ext_resource type="Texture2D" uid="uid://dwy8hyugmpvic" path="res://assets/tilesets/middle.png" id="2_43pkk"]
+[ext_resource type="FontFile" uid="uid://c5avpgkgye7a7" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_dojpf"]
 [ext_resource type="TileSet" uid="uid://kc3mui57julq" path="res://assets/tilesets/tileset.tres" id="3_4yy33"]
 [ext_resource type="Texture2D" uid="uid://cciwax8darf6l" path="res://assets/tilesets/tileset.png" id="4_nkg8n"]
 [ext_resource type="TileSet" uid="uid://wl6tyqpi3jbn" path="res://assets/tilesets/propsset.tres" id="5_ju7hw"]
@@ -12,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bc8rs8an6scnj" path="res://scenes/killzone.tscn" id="10_nkg8n"]
 [ext_resource type="PackedScene" uid="uid://cc2lkerlx1i8v" path="res://scenes/slime.tscn" id="11_g0jlf"]
 [ext_resource type="PackedScene" uid="uid://047w7lehqjnm" path="res://scenes/super_fruit.tscn" id="12_rxbej"]
+[ext_resource type="FontFile" uid="uid://cq111ofk8mpat" path="res://assets/fonts/PixelOperator8.ttf" id="13_p8ltl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rxbej"]
 texture = ExtResource("4_nkg8n")
@@ -360,6 +363,22 @@ _data = {
 
 [node name="World2D" type="Node2D"]
 
+[node name="GameManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_aua73")
+
+[node name="ScoreLabel" type="Label" parent="GameManager"]
+offset_left = 1165.0
+offset_top = -328.0
+offset_right = 1242.0
+offset_bottom = -286.0
+theme_override_colors/font_color = Color(0.90588236, 0, 0.06666667, 1)
+theme_override_fonts/font = ExtResource("2_dojpf")
+theme_override_font_sizes/font_size = 8
+text = "You collected x coins!"
+horizontal_alignment = 1
+autowrap_mode = 2
+
 [node name="Background" type="Node2D" parent="."]
 
 [node name="Back" type="Sprite2D" parent="Background"]
@@ -434,7 +453,7 @@ tile_map_data = PackedByteArray("AAD3/wMAAAAPAAYAAAD4/wMAAAAQAAYAAAD5/wMAAAARAAY
 tile_set = ExtResource("5_ju7hw")
 
 [node name="Player" parent="." instance=ExtResource("1_pneyj")]
-position = Vector2(929, 65)
+position = Vector2(-196, 61)
 script = ExtResource("2_6cuhj")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -445,6 +464,19 @@ zoom = Vector2(1.5, 1.5)
 limit_bottom = 514
 limit_smoothed = true
 position_smoothing_enabled = true
+
+[node name="ScoreTally" type="Label" parent="Player"]
+unique_name_in_owner = true
+offset_left = -44.0
+offset_top = -208.0
+offset_right = 52.0
+offset_bottom = -186.0
+theme_override_colors/font_color = Color(0.90588236, 0, 0.06666667, 1)
+theme_override_fonts/font = ExtResource("13_p8ltl")
+theme_override_font_sizes/font_size = 16
+text = "Coins  "
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="Platforms" type="Node2D" parent="."]
 
@@ -584,6 +616,20 @@ position = Vector2(448, -153)
 [node name="Slime2" parent="Enemies" instance=ExtResource("11_g0jlf")]
 position = Vector2(-28, 55)
 
-[node name="Slime" parent="." instance=ExtResource("11_g0jlf")]
+[node name="Slime3" parent="Enemies" instance=ExtResource("11_g0jlf")]
 position = Vector2(948, 110.00001)
 scale = Vector2(2.17917, 2.17917)
+
+[node name="Labels" type="Node" parent="."]
+
+[node name="Label" type="Label" parent="Labels"]
+offset_left = -22.0
+offset_top = -45.0
+offset_right = 55.0
+offset_bottom = -3.0
+theme_override_colors/font_color = Color(0.90588236, 0, 0.06666667, 1)
+theme_override_fonts/font = ExtResource("13_p8ltl")
+theme_override_font_sizes/font_size = 8
+text = "Collect the coins and Fruit."
+horizontal_alignment = 1
+autowrap_mode = 2
