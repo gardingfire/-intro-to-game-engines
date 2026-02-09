@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://ckxaq52sf2fgc"]
+
+[ext_resource type="Script" uid="uid://cr3wlseytyl0c" path="res://main_menu.gd" id="1_7vrkn"]
+[ext_resource type="FontFile" uid="uid://cq111ofk8mpat" path="res://assets/fonts/PixelOperator8.ttf" id="2_fu7sn"]
+[ext_resource type="Texture2D" uid="uid://tmuukrbws5np" path="res://assets/tilesets/back.png" id="2_jix8l"]
+
+[node name="Main Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7vrkn")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 285.0
+offset_top = 117.00001
+offset_right = 345.0
+offset_bottom = 169.0
+scale = Vector2(9.98508, 7.6150756)
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer"]
+position = Vector2(28.141987, 26.526327)
+scale = Vector2(0.33772466, 0.35498166)
+texture = ExtResource("2_jix8l")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_fu7sn")
+text = "Play	"
+
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_fu7sn")
+text = "Quit"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
